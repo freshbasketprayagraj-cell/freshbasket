@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Fresh Basket delivers fresh vegetables and fruits to your doorstep in Prayagraj. Order on WhatsApp, delivered next morning.">
+  <meta name="theme-color" content="#14532d">
+  <title>Fresh Basket | Fresh Vegetables & Fruits in Prayagraj</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🧺%3C/text%3E%3C/svg%3E">
+  <style>
+    :root {
+      --green: #1f7a3a;
+      --green-dark: #14532d;
+      --green-soft: #e8f5ec;
+      --accent: #f59e0b;
+      --bg: #f6faf4;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --wa: #25d366;
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      padding-bottom: 84px;
+    }
+    a { color: inherit; }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+
+    /* ---------- Top bar ---------- */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      height: 60px;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav .wrap {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--green-dark);
+      text-decoration: none;
+      letter-spacing: -0.3px;
+    }
+    .logo span { color: var(--accent); }
+    .btn {
+      display: inline-block;
+      border: none;
+      border-radius: 999px;
+      padding: 11px 22px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .btn-wa { background: var(--wa); color: #fff; }
+    .btn-accent { background: var(--accent); color: #1f2937; }
+    .btn-ghost { background: rgba(255,255,255,0.15); color: #fff; border: 1.5px solid rgba(255,255,255,0.6); }
+    .nav .btn { padding: 9px 18px; font-size: 14px; }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 100%);
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before, .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+    }
+    .hero::before { width: 380px; height: 380px; top: -140px; right: -90px; }
+    .hero::after { width: 260px; height: 260px; bottom: -120px; left: -80px; }
+    .hero .wrap { position: relative; z-index: 1; padding-top: 54px; padding-bottom: 54px; text-align: center; }
+    .eyebrow {
+      display: inline-block;
+      background: rgba(255,255,255,0.14);
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+    }
+    .hero h1 {
+      font-size: clamp(30px, 6vw, 52px);
+      line-height: 1.12;
+      margin: 18px auto 14px;
+      max-width: 760px;
+      letter-spacing: -0.8px;
+    }
+    .hero p.lead {
+      font-size: clamp(16px, 2.4vw, 19px);
+      max-width: 620px;
+      margin: 0 auto 26px;
+      opacity: 0.92;
+    }
+    .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .badges {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+    .badge {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.22);
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* ---------- Sections ---------- */
+    section { padding: 46px 0 6px; }
+    .sec-head { text-align: center; margin-bottom: 26px; }
+    .sec-head h2 { margin: 0 0 6px; font-size: clamp(24px, 4vw, 32px); color: var(--green-dark); letter-spacing: -0.4px; }
+    .sec-head p { margin: 0; color: var(--muted); }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 16px;
+    }
+    .feature {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 22px;
+      border: 1px solid var(--line);
+    }
+    .feature .ic {
+      width: 48px; height: 48px;
+      display: grid; place-items: center;
+      background: var(--green-soft);
+      border-radius: 12px;
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+    .feature h3 { margin: 0 0 6px; font-size: 18px; color: var(--green-dark); }
+    .feature p { margin: 0; color: var(--muted); font-size: 15px; }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    .step {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 22px;
+      border: 1px solid var(--line);
+      position: relative;
+    }
+    .step .num {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--green);
+      color: #fff;
+      display: grid; place-items: center;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .step h3 { margin: 0 0 6px; font-size: 18px; }
+    .step p { margin: 0; color: var(--muted); font-size: 15px; }
+
+    /* ---------- Shop ---------- */
+    .search {
+      width: 100%;
+      padding: 14px 18px;
+      border: 1.5px solid var(--line);
+      border-radius: 999px;
+      font-size: 16px;
+      font-family: inherit;
+      background: #fff;
+      outline: none;
+    }
+    .search:focus { border-color: var(--green); }
+    .chips {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 14px 0 12px;
+      position: sticky;
+      top: 60px;
+      z-index: 40;
+      background: var(--bg);
+      scrollbar-width: none;
+    }
+    .chips::-webkit-scrollbar { display: none; }
+    .chip {
+      flex: 0 0 auto;
+      padding: 9px 18px;
+      border-radius: 999px;
+      border: 1.5px solid var(--line);
+      background: #fff;
+      color: var(--text);
+      font-size: 14.5px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .chip.active { background: var(--green); border-color: var(--green); color: #fff; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+      gap: 14px;
+    }
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow .2s, transform .2s;
+    }
+    .card:hover { box-shadow: 0 8px 22px rgba(20, 83, 45, 0.12); transform: translateY(-2px); }
+    .card img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      display: block;
+      background: var(--green-soft);
+    }
+    .card .body { padding: 12px 14px 14px; display: flex; flex-direction: column; flex: 1; }
+    .card h3 { margin: 0; font-size: 16px; }
+    .card .hi { color: var(--muted); font-size: 13px; margin-top: 1px; }
+    .card .price { font-size: 18px; font-weight: 800; color: var(--green-dark); margin: 8px 0 10px; }
+    .card .act { margin-top: auto; }
+    .add-btn {
+      width: 100%;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1.5px solid var(--green);
+      background: #fff;
+      color: var(--green);
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .add-btn:hover { background: var(--green); color: #fff; }
+    .stepper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--green);
+      border-radius: 10px;
+      color: #fff;
+      overflow: hidden;
+    }
+    .stepper button {
+      width: 44px; height: 40px;
+      border: none;
+      background: transparent;
+      color: #fff;
+      font-size: 22px;
+      cursor: pointer;
+    }
+    .stepper span { font-weight: 800; font-size: 16px; }
+    .empty { text-align: center; padding: 36px; color: var(--muted); display: none; }
+
+    /* ---------- Checkout ---------- */
+    .checkout {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .checkout h3 { margin: 0 0 12px; font-size: 20px; color: var(--green-dark); }
+    .row {
+      display: flex;
+      justify-content: space-between;
+      padding: 9px 0;
+      border-bottom: 1px dashed var(--line);
+      font-size: 15.5px;
+    }
+    .basket-empty { color: var(--muted); padding: 6px 0 12px; }
+    .delivery {
+      margin-top: 18px;
+      background: var(--green-soft);
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
+    .delivery b { display: block; margin-bottom: 6px; }
+    .delivery label { display: block; padding: 7px 0; cursor: pointer; font-size: 15.5px; }
+    .member-note { display: none; color: var(--green-dark); font-weight: 700; margin-top: 6px; font-size: 14.5px; }
+    .total {
+      display: flex;
+      justify-content: space-between;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--green-dark);
+      margin: 18px 0 4px;
+    }
+    .pay-note {
+      background: #eef6ff;
+      border-radius: 12px;
+      padding: 13px 16px;
+      font-size: 14.5px;
+      margin: 14px 0 6px;
+    }
+    .field {
+      width: 100%;
+      padding: 13px 14px;
+      margin-top: 12px;
+      border: 1.5px solid var(--line);
+      border-radius: 12px;
+      font-size: 16px;
+      font-family: inherit;
+      outline: none;
+    }
+    .field:focus { border-color: var(--green); }
+    .submit {
+      width: 100%;
+      margin-top: 18px;
+      padding: 16px;
+      border: none;
+      border-radius: 14px;
+      background: var(--wa);
+      color: #fff;
+      font-size: 18px;
+      font-weight: 800;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    /* ---------- FAQ ---------- */
+    .faq { max-width: 760px; margin: 0 auto; }
+    details {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin-bottom: 10px;
+    }
+    summary { font-weight: 700; cursor: pointer; font-size: 16.5px; }
+    details p { margin: 10px 0 0; color: var(--muted); }
+
+    /* ---------- Footer ---------- */
+    footer {
+      margin-top: 50px;
+      background: var(--green-dark);
+      color: #d7ead9;
+      text-align: center;
+      padding: 34px 16px 40px;
+    }
+    footer .brand { font-size: 22px; font-weight: 800; color: #fff; }
+    footer p { margin: 6px 0; }
+    footer a { color: #fff; font-weight: 700; }
+
+    /* ---------- Floating bits ---------- */
+    .wa-float {
+      position: fixed;
+      right: 16px;
+      bottom: 92px;
+      z-index: 60;
+      background: var(--wa);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 800;
+      padding: 12px 18px;
+      border-radius: 999px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    }
+    .bar {
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      z-index: 70;
+      background: var(--green-dark);
+      color: #fff;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 -4px 16px rgba(0,0,0,0.18);
+    }
+    .bar .t { font-size: 16px; font-weight: 700; }
+    .bar .s { font-size: 13px; opacity: 0.85; }
+    .bar a {
+      background: var(--accent);
+      color: #1f2937;
+      font-weight: 800;
+      text-decoration: none;
+      padding: 11px 20px;
+      border-radius: 999px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== Top bar ===== -->
+  <div class="nav">
+    <div class="wrap">
+      <a class="logo" href="#top">🧺 Fresh<span>Basket</span></a>
+      <a class="btn btn-wa js-wa" href="#" target="_blank">Order on WhatsApp</a>
+    </div>
+  </div>
+
+  <!-- ===== Hero ===== -->
+  <div class="hero" id="top">
+    <div class="wrap">
+      <span class="eyebrow">Prayagraj • Doorstep delivery</span>
+      <h1>Fresh vegetables &amp; fruits, delivered to your door.</h1>
+      <p class="lead">Order by <span class="js-cutoff"></span> and get your basket the next morning between <span class="js-window"></span>. Simple, quick, and right on WhatsApp.</p>
+      <div class="hero-actions">
+        <a class="btn btn-accent" href="#shop">Start shopping</a>
+        <a class="btn btn-ghost js-wa" href="#" target="_blank">Chat on WhatsApp</a>
+      </div>
+      <div class="badges">
+        <span class="badge">🕔 Delivery <span class="js-window"></span></span>
+        <span class="badge">📍 Prayagraj</span>
+        <span class="badge">🛒 Minimum order ₹<span class="js-min"></span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Why us ===== -->
+  <section>
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Why Fresh Basket</h2>
+        <p>A simpler way to buy your daily vegetables and fruits.</p>
+      </div>
+      <div class="features">
+        <div class="feature">
+          <div class="ic">🛒</div>
+          <h3>Bought for your order</h3>
+          <p>We purchase based on the orders we receive, so there is no old stock sitting around.</p>
+        </div>
+        <div class="feature">
+          <div class="ic">🌅</div>
+          <h3>Morning doorstep delivery</h3>
+          <p>Order in the evening and receive your basket between <span class="js-window"></span> next morning.</p>
+        </div>
+        <div class="feature">
+          <div class="ic">💬</div>
+          <h3>Order on WhatsApp</h3>
+          <p>No app to download and no sign-up. Choose items, send the order, and chat with us directly.</p>
+        </div>
+        <div class="feature">
+          <div class="ic">🎁</div>
+          <h3>Monthly plans</h3>
+          <p>Buy regularly? Members get free standard delivery on every order.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== How it works ===== -->
+  <section>
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>How it works</h2>
+        <p>Three easy steps from basket to doorstep.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="num">1</div>
+          <h3>Choose your items</h3>
+          <p>Browse vegetables and fruits below and add what you need to your basket.</p>
+        </div>
+        <div class="step">
+          <div class="num">2</div>
+          <h3>Send your order</h3>
+          <p>Enter your details and send the order on WhatsApp before <span class="js-cutoff"></span>. Pay in advance via UPI.</p>
+        </div>
+        <div class="step">
+          <div class="num">3</div>
+          <h3>Get it delivered</h3>
+          <p>We buy what you ordered and deliver it next morning between <span class="js-window"></span>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Shop ===== -->
+  <section id="shop">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Shop fresh</h2>
+        <p>Minimum order ₹<span class="js-min"></span>. Prices are per the quantity shown.</p>
+      </div>
+
+      <input type="text" class="search" id="search" placeholder="Search vegetables and fruits (e.g. potato, aloo)" oninput="renderItems()">
+      <div class="chips" id="chips"></div>
+
+      <div class="grid" id="grid"></div>
+      <div class="empty" id="empty">No items found. Try a different name.</div>
+    </div>
+  </section>
+
+  <!-- ===== Checkout ===== -->
+  <section id="checkout">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Your order</h2>
+        <p>Review your basket and send it on WhatsApp.</p>
+      </div>
+
+      <div class="checkout">
+        <h3>Basket</h3>
+        <div id="basket"><div class="basket-empty">Your basket is empty. Add items from the shop above.</div></div>
+
+        <div class="delivery">
+          <b>Delivery</b>
+          <label>
+            <input type="radio" name="delivery" value="normal" checked onchange="updateCart()">
+            <span id="label-normal"></span>
+          </label>
+          <label>
+            <input type="radio" name="delivery" value="instant" onchange="updateCart()">
+            <span id="label-instant"></span>
+          </label>
+          <div class="member-note" id="member-note">✅ Monthly Plan member: free standard delivery applied.</div>
+        </div>
+
+        <div class="total"><span>Total</span><span id="total">₹0</span></div>
+
+        <div class="pay-note">
+          <b>Payment:</b> Advance payment via UPI. After you send your order on WhatsApp, we will share our UPI QR / ID. Your order is confirmed once payment is received.
+        </div>
+
+        <input class="field" type="text" id="name" placeholder="Full name">
+        <input class="field" type="tel" id="phone" placeholder="Phone number (10 digits)" oninput="updateCart()">
+        <textarea class="field" id="address" rows="3" placeholder="Full delivery address (area, landmark)"></textarea>
+        <textarea class="field" id="notes" rows="2" placeholder="Notes for us (optional)"></textarea>
+
+        <button class="submit" onclick="sendOrder()">Send order on WhatsApp</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section>
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Frequently asked questions</h2>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>When will my order arrive?</summary>
+          <p>Orders placed by <span class="js-cutoff"></span> are delivered the next morning between <span class="js-window"></span>. Orders placed after that are delivered the morning after.</p>
+        </details>
+        <details>
+          <summary>Can I get same-day delivery?</summary>
+          <p>Yes. Choose Instant delivery at checkout. It carries an extra charge of ₹<span class="js-instant"></span>.</p>
+        </details>
+        <details>
+          <summary>How do I pay?</summary>
+          <p>Payment is in advance via UPI. After you send your order on WhatsApp, we share our UPI QR / ID. Your order is confirmed once the payment is received.</p>
+        </details>
+        <details>
+          <summary>What is the minimum order and delivery charge?</summary>
+          <p>The minimum order is ₹<span class="js-min"></span>. Standard delivery is ₹<span class="js-normal"></span>, and it is free for Monthly Plan members.</p>
+        </details>
+        <details>
+          <summary>Which areas do you deliver to?</summary>
+          <p>We currently deliver in Prayagraj. Message us on WhatsApp to check whether we cover your locality.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    <div class="brand">🧺 Fresh Basket</div>
+    <p>Prayagraj, Uttar Pradesh</p>
+    <p>WhatsApp: <a class="js-wa" href="#" target="_blank" id="footer-phone"></a></p>
+    <p style="opacity:.7; font-size:13px; margin-top:14px;">© 2026 Fresh Basket. All rights reserved.</p>
+  </footer>
+
+  <!-- ===== Floating button and basket bar ===== -->
+  <a class="wa-float js-wa" href="#" target="_blank">💬 Chat with us</a>
+
+  <div class="bar">
+    <div>
+      <div class="t" id="bar-total">Basket is empty</div>
+      <div class="s" id="bar-sub">Add items to get started</div>
+    </div>
+    <a href="#checkout">View order</a>
+  </div>
+
+  <script>
+    // ================= SETTINGS (change here) =================
+    const SHOP_WHATSAPP = "919936925222";    // 91 + 10 digit number
+    const DELIVERY_NORMAL = 20;              // standard delivery charge
+    const DELIVERY_INSTANT = 30;             // instant delivery charge
+    const MIN_ORDER = 199;                   // minimum order amount
+    const DELIVERY_WINDOW = "5 AM – 9 AM";   // morning delivery time
+    const ORDER_CUTOFF = "9 PM";             // last time to order for next morning
+
+    // Monthly plan members: 10 digit phone numbers
+    const MEMBERS = [
+      "9559699677"
+    ];
+
+    // Category names (each product's cat must match one of these)
+    const CATEGORIES = ["All", "Roots & Spices", "Vegetables", "Leafy & Herbs", "Fruits"];
+    // ==========================================================
+
+    // name: English name, hi: Hindi name (small text), img: photo file in images folder
+    const products = [
+      { name: "Ginger (250 g)", hi: "Adrak", price: 30, img: "adrak.png", cat: "Roots & Spices" },
+      { name: "Potato (1 kg)", hi: "Aloo", price: 30, img: "aloo.png", cat: "Roots & Spices" },
+      { name: "Brinjal (1 kg)", hi: "Baingan", price: 40, img: "baingan.png", cat: "Vegetables" },
+      { name: "Okra (1 kg)", hi: "Bhindi", price: 50, img: "bhindi.png", cat: "Vegetables" },
+      { name: "Coriander (100 g)", hi: "Dhaniya", price: 10, img: "dhaniya.png", cat: "Leafy & Herbs" },
+      { name: "Carrot (1 kg)", hi: "Gajar", price: 40, img: "gajar.png", cat: "Roots & Spices" },
+      { name: "Pumpkin (1 kg)", hi: "Kaddu", price: 30, img: "kaddu.png", cat: "Vegetables" },
+      { name: "Bitter Gourd (1 kg)", hi: "Karela", price: 50, img: "karela.png", cat: "Vegetables" },
+      { name: "Banana (1 dozen)", hi: "Kela", price: 60, img: "kela.png", cat: "Fruits" },
+      { name: "Cucumber (1 kg)", hi: "Kheera", price: 40, img: "kheera.png", cat: "Vegetables" },
+      { name: "Garlic (250 g)", hi: "Lahsun", price: 40, img: "lahsun.png", cat: "Roots & Spices" },
+      { name: "Bottle Gourd (1 kg)", hi: "Lauki", price: 35, img: "lauki.png", cat: "Vegetables" },
+      { name: "Fenugreek Leaves (1 bunch)", hi: "Methi", price: 15, img: "methi.png", cat: "Leafy & Herbs" },
+      { name: "Radish (1 kg)", hi: "Mooli", price: 30, img: "mooli.png", cat: "Roots & Spices" },
+      { name: "Spinach (1 bunch)", hi: "Palak", price: 15, img: "palak.png", cat: "Leafy & Herbs" },
+      { name: "Cabbage (1 kg)", hi: "Patta Gobhi", price: 35, img: "patta_gobhi.png", cat: "Vegetables" },
+      { name: "Cauliflower (1 kg)", hi: "Phool Gobhi", price: 50, img: "phool_gobhi.png", cat: "Vegetables" },
+      { name: "Mint (1 bunch)", hi: "Pudina", price: 10, img: "pudina.png", cat: "Leafy & Herbs" },
+      { name: "Onion (1 kg)", hi: "Pyaaz", price: 40, img: "pyaaz.png", cat: "Roots & Spices" },
+      { name: "Apple (1 kg)", hi: "Seb", price: 150, img: "seb.png", cat: "Fruits" },
+      { name: "Flat Beans (500 g)", hi: "Sem Fali", price: 40, img: "sem_fali.png", cat: "Vegetables" },
+      { name: "Capsicum (500 g)", hi: "Shimla Mirch", price: 40, img: "shimla_mirch.png", cat: "Vegetables" },
+      { name: "Dill Leaves (1 bunch)", hi: "Soya Sabzi", price: 15, img: "soya_sabzi.png", cat: "Leafy & Herbs" },
+      { name: "Tomato (1 kg)", hi: "Tamatar", price: 35, img: "tamatar.png", cat: "Vegetables" },
+      { name: "Ridge Gourd (1 kg)", hi: "Tori", price: 45, img: "tori.png", cat: "Vegetables" }
+    ];
+
+    const cart = {};
+    let currentCat = 0;   // index in CATEGORIES
+
+    // ----- Fill settings into the page -----
+    function fillSettings() {
+      const set = function (cls, val) {
+        document.querySelectorAll(cls).forEach(function (e) { e.textContent = val; });
+      };
+      set(".js-min", MIN_ORDER);
+      set(".js-window", DELIVERY_WINDOW);
+      set(".js-cutoff", ORDER_CUTOFF);
+      set(".js-normal", DELIVERY_NORMAL);
+      set(".js-instant", DELIVERY_INSTANT);
+
+      const n = SHOP_WHATSAPP;
+      document.getElementById("footer-phone").textContent =
+        "+" + n.slice(0, 2) + " " + n.slice(2, 7) + " " + n.slice(7);
+
+      const waLink = "https://wa.me/" + SHOP_WHATSAPP + "?text=" +
+        encodeURIComponent("Hello Fresh Basket, I have a question.");
+      document.querySelectorAll(".js-wa").forEach(function (e) { e.href = waLink; });
+
+      document.getElementById("label-normal").textContent =
+        "Next morning, " + DELIVERY_WINDOW + " (₹" + DELIVERY_NORMAL + ", free for Monthly Plan members)";
+      document.getElementById("label-instant").textContent =
+        "Instant delivery, today (extra ₹" + DELIVERY_INSTANT + ")";
+    }
+
+    // ----- Category chips -----
+    function renderChips() {
+      document.getElementById("chips").innerHTML = CATEGORIES.map(function (c, idx) {
+        return '<button class="chip ' + (idx === currentCat ? "active" : "") +
+               '" onclick="setCat(' + idx + ')">' + c + '</button>';
+      }).join("");
+    }
+
+    function setCat(idx) {
+      currentCat = idx;
+      renderChips();
+      renderItems();
+    }
+
+    // ----- Add button / stepper for one product -----
+    function actionHTML(i) {
+      const q = cart[i] || 0;
+      if (q === 0) {
+        return '<button class="add-btn" onclick="changeQty(' + i + ', 1)">Add</button>';
+      }
+      return '<div class="stepper">' +
+               '<button onclick="changeQty(' + i + ', -1)">−</button>' +
+               '<span>' + q + '</span>' +
+               '<button onclick="changeQty(' + i + ', 1)">+</button>' +
+             '</div>';
+    }
+
+    // ----- Product grid (filtered by category and search) -----
+    function renderItems() {
+      const q = document.getElementById("search").value.trim().toLowerCase();
+      const cat = CATEGORIES[currentCat];
+      let html = "";
+      let count = 0;
+
+      products.forEach(function (p, i) {
+        if (cat !== "All" && p.cat !== cat) return;
+        if (q && (p.name + " " + p.hi).toLowerCase().indexOf(q) === -1) return;
+        count++;
+        html += '<div class="card">' +
+                  '<img src="images/' + p.img + '" alt="' + p.name + '" loading="lazy">' +
+                  '<div class="body">' +
+                    '<h3>' + p.name + '</h3>' +
+                    '<div class="hi">' + p.hi + '</div>' +
+                    '<div class="price">₹' + p.price + '</div>' +
+                    '<div class="act" id="act-' + i + '">' + actionHTML(i) + '</div>' +
+                  '</div>' +
+                '</div>';
+      });
+
+      document.getElementById("grid").innerHTML = html;
+      document.getElementById("empty").style.display = count === 0 ? "block" : "none";
+    }
+
+    function changeQty(i, delta) {
+      cart[i] = Math.max(0, (cart[i] || 0) + delta);
+      const box = document.getElementById("act-" + i);
+      if (box) box.innerHTML = actionHTML(i);
+      updateCart();
+    }
+
+    // ----- Totals -----
+    function getItemsTotal() {
+      let total = 0;
+      products.forEach(function (p, i) { total += p.price * (cart[i] || 0); });
+      return total;
+    }
+
+    function getItemCount() {
+      let n = 0;
+      products.forEach(function (p, i) { n += (cart[i] || 0); });
+      return n;
+    }
+
+    function getDeliveryType() {
+      return document.querySelector('input[name="delivery"]:checked').value;
+    }
+
+    // Last 10 digits of the phone number (removes +91 or 0)
+    function getPhone10() {
+      const digits = document.getElementById("phone").value.replace(/\D/g, "");
+      return digits.slice(-10);
+    }
+
+    function isMember() {
+      const p = getPhone10();
+      return p.length === 10 && MEMBERS.includes(p);
+    }
+
+    function getDeliveryCharge() {
+      if (getItemsTotal() === 0) return 0;
+      if (getDeliveryType() === "instant") return DELIVERY_INSTANT;
+      return isMember() ? 0 : DELIVERY_NORMAL;
+    }
+
+    function getGrandTotal() {
+      return getItemsTotal() + getDeliveryCharge();
+    }
+
+    function updateCart() {
+      let html = "";
+      products.forEach(function (p, i) {
+        if (cart[i] > 0) {
+          html += '<div class="row"><span>' + p.name + ' × ' + cart[i] + '</span>' +
+                  '<span>₹' + (p.price * cart[i]) + '</span></div>';
+        }
+      });
+      if (getItemsTotal() > 0) {
+        html += '<div class="row"><span>Delivery</span><span>' +
+                (getDeliveryCharge() === 0 ? "Free" : "₹" + getDeliveryCharge()) + '</span></div>';
+      }
+      document.getElementById("basket").innerHTML =
+        html || '<div class="basket-empty">Your basket is empty. Add items from the shop above.</div>';
+
+      document.getElementById("member-note").style.display = isMember() ? "block" : "none";
+      document.getElementById("total").textContent = "₹" + getGrandTotal();
+
+      const count = getItemCount();
+      if (count === 0) {
+        document.getElementById("bar-total").textContent = "Basket is empty";
+        document.getElementById("bar-sub").textContent = "Add items to get started";
+      } else {
+        document.getElementById("bar-total").textContent = "Total ₹" + getGrandTotal();
+        document.getElementById("bar-sub").textContent =
+          count + (count === 1 ? " item" : " items") + " in your basket";
+      }
+    }
+
+    // ----- Send order on WhatsApp -----
+    function sendOrder() {
+      const name = document.getElementById("name").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const address = document.getElementById("address").value.trim();
+      const notes = document.getElementById("notes").value.trim();
+
+      if (getItemsTotal() === 0) {
+        alert("Please add some items to your basket first.");
+        return;
+      }
+      if (getItemsTotal() < MIN_ORDER) {
+        alert("The minimum order is ₹" + MIN_ORDER + ". Please add more items.");
+        return;
+      }
+      if (!name || !phone || !address) {
+        alert("Please fill in your name, phone number and address.");
+        return;
+      }
+      if (getPhone10().length !== 10) {
+        alert("Please enter a valid 10-digit phone number.");
+        return;
+      }
+
+      const isInstant = getDeliveryType() === "instant";
+
+      let msg = "New order - Fresh Basket\n\n";
+      products.forEach(function (p, i) {
+        if (cart[i] > 0) {
+          msg += p.name + " x " + cart[i] + " = ₹" + (p.price * cart[i]) + "\n";
+        }
+      });
+      msg += "\nItems: ₹" + getItemsTotal();
+      msg += "\nDelivery: " + (isInstant ? "INSTANT (today)" : "Next morning, " + DELIVERY_WINDOW) +
+             " (₹" + getDeliveryCharge() + ")";
+      msg += "\nMonthly plan member: " + (isMember() ? "Yes" : "No");
+      msg += "\nTotal: ₹" + getGrandTotal();
+      msg += "\nPayment: Advance (UPI)";
+      msg += "\n\nName: " + name;
+      msg += "\nPhone: " + phone;
+      msg += "\nAddress: " + address;
+      if (notes) msg += "\nNotes: " + notes;
+
+      const url = "https://wa.me/" + SHOP_WHATSAPP + "?text=" + encodeURIComponent(msg);
+      window.open(url, "_blank");
+    }
+
+    // ----- Start -----
+    fillSettings();
+    renderChips();
+    renderItems();
+    updateCart();
+  </script>
+
+</body>
+</html>
